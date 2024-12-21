@@ -1,15 +1,19 @@
-import { useForm } from "react-hook-form";
-import type { Login, Register } from "@/types/Auth";
+import { SubmitHandler, useForm } from "react-hook-form";
+import type { Login, Register as RegisterType } from "@/types/Auth";
 import { useState } from "react";
 import useDocumentTitle from "@/hooks/DocumentTitle";
 import { Input } from "@/components/ui/input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   FacebookLoginButton,
   GoogleLoginButton,
 } from "react-social-login-buttons";
 import { EyeIcon, EyeOffIcon, Loader2Icon } from "lucide-react";
+import { setToast } from "@/redux/slice/toastSlice";
+import { setAuthLogin } from "@/redux/slice/authSlice";
+import { useDispatch } from "react-redux";
+import { register as RegisterService } from "@/services/AuthServices";
 
 const Login = () => {
   useDocumentTitle("Đăng Ký");
@@ -18,13 +22,43 @@ const Login = () => {
   const [showPasswordConfirmation, setShowPasswordConfirmation] =
     useState<boolean>(false);
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Register>();
+  } = useForm<RegisterType>();
 
-  const onSubmit = (data: Register) => {};
+  const onSubmit: SubmitHandler<RegisterType> = async (payload) => {
+    try {
+      setLoading(true);
+
+      const auth = await RegisterService(payload);
+
+      if (!auth) {
+        dispatch(
+          setToast({
+            message: "Đăng ký không thành công",
+            type: "error",
+          })
+        );
+        setLoading(false);
+        return;
+      }
+
+      dispatch(setToast({ message: "Đăng nhập thành công", type: "success" }));
+      dispatch(setAuthLogin(auth));
+
+      auth && navigate("/");
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="flex items-center justify-center py-[40px]">

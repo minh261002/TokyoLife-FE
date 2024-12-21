@@ -9,6 +9,7 @@ import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { clearToast } from "@/redux/slice/toastSlice";
+import Footer from "@/components/footer/Footer";
 
 const Layout = () => {
   const { message, type } = useSelector((state: RootState) => state.toast);
@@ -27,8 +28,12 @@ const Layout = () => {
         <HeaderBottom />
       </div>
 
-      <div>
+      <div className="w-full max-w-[1280px] mx-auto">
         <Outlet />
+      </div>
+
+      <div className="w-full max-w-[1280px] mx-auto">
+        <Footer />
       </div>
     </div>
   );

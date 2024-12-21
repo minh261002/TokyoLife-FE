@@ -1,20 +1,26 @@
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import type { Login } from "@/types/Auth";
 import { useState } from "react";
 import useDocumentTitle from "@/hooks/DocumentTitle";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   FacebookLoginButton,
   GoogleLoginButton,
 } from "react-social-login-buttons";
 import { Loader2Icon } from "lucide-react";
+import { login } from "@/services/AuthServices";
+import { useDispatch } from "react-redux";
+import { setToast } from "@/redux/slice/toastSlice";
+import { setAuthLogin } from "@/redux/slice/authSlice";
 
 const Login = () => {
   useDocumentTitle("Đăng Nhập");
   const [loading, setLoading] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -22,8 +28,34 @@ const Login = () => {
     formState: { errors },
   } = useForm<Login>();
 
-  const onSubmit = (data: Login) => {};
+  const onSubmit: SubmitHandler<Login> = async (payload) => {
+    try {
+      setLoading(true);
 
+      const auth = await login(payload);
+
+      if (!auth) {
+        dispatch(
+          setToast({
+            message: "Thông tin đăng nhập không chính xác",
+            type: "error",
+          })
+        );
+        setLoading(false);
+        return;
+      }
+
+      dispatch(setToast({ message: "Đăng nhập thành công", type: "success" }));
+      dispatch(setAuthLogin(auth));
+
+      auth && navigate("/");
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="flex items-center justify-center py-[40px]">
       <div className="w-full max-w-[580px] ">
