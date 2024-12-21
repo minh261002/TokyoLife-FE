@@ -42,7 +42,7 @@ const HeaderTop = () => {
           <div className="swiper-wrapper text-center">
             <div className="swiper-slide">
               <Link to={"/"} className="flex items-center justify-center gap-2">
-                <span className="text-md text-white uppercase font-semibold">
+                <span className="text-xs md:text-md text-white uppercase font-semibold">
                   Vũ trụ sale lớn nhất trong năm
                 </span>
                 <span className="font-light text-white">
@@ -52,7 +52,7 @@ const HeaderTop = () => {
             </div>
             <div className="swiper-slide">
               <Link to={"/"} className="flex items-center justify-center gap-2">
-                <span className="text-md text-white uppercase font-semibold">
+                <span className="text-xs md:text-md text-white uppercase font-semibold">
                   Cơ hội cuối rinh giày thể thao chỉ 499K
                 </span>
                 <span className="font-light text-white">
@@ -62,7 +62,7 @@ const HeaderTop = () => {
             </div>
             <div className="swiper-slide">
               <Link to={"/"} className="flex items-center justify-center gap-2">
-                <span className="text-md text-white uppercase font-semibold">
+                <span className="text-xs md:text-md text-white uppercase font-semibold">
                   Đừng bỏ lỡ ưu đãi giảm 30% độc quyền
                 </span>
                 <span className="font-light text-white">

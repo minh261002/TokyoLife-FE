@@ -4,7 +4,6 @@
 
 /* ... */
 
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -86,4 +85,8 @@
   font-variant: initial;
   line-height: 1;
   color: #333;
+}
+
+.swiper-home {
+  overflow: hidden;
 }

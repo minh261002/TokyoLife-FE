@@ -1,7 +1,13 @@
-import React from "react";
+import SwiperSlider from "@/components/home/SwiperSlider";
 
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <div>
+        <SwiperSlider />
+      </div>
+    </div>
+  );
 };
 
 export default Home;
