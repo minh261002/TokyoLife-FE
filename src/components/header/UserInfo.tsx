@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const UserInfo = () => {
   const { isAuthenticated, user } = useSelector(
@@ -62,14 +63,18 @@ const UserInfo = () => {
               </AvatarFallback>
             </Avatar>
             <DropdownMenuContent>
-              <DropdownMenuItem>
-                <LogInIcon size={20} />
-                Đăng nhập
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <SquareArrowUpIcon size={20} />
-                Đăng ký
-              </DropdownMenuItem>
+              <Link to={"/dang-nhap"}>
+                <DropdownMenuItem>
+                  <LogInIcon size={20} />
+                  Đăng nhập
+                </DropdownMenuItem>
+              </Link>
+              <Link to={"/dang-ky"}>
+                <DropdownMenuItem>
+                  <SquareArrowUpIcon size={20} />
+                  Đăng ký
+                </DropdownMenuItem>
+              </Link>
             </DropdownMenuContent>
           </>
         )}

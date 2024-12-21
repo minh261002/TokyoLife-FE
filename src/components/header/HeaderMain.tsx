@@ -10,9 +10,9 @@ const HeaderMain = () => {
     <div className="flex items-center justify-center bg-[#f8f1e4] py-4">
       <div className="w-full max-w-[1280px]">
         <div className="grid grid-cols-12 grid-rows-1 gap-4 items-center">
-          <div className="col-span-3">
+          <Link to={"/"} className="col-span-3">
             <img src="/logo.svg" alt="logo" />
-          </div>
+          </Link>
           <div className="col-span-6 col-start-4 relative">
             <Input
               placeholder="Tìm kiếm sản phẩm"
