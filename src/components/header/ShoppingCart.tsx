@@ -11,7 +11,7 @@ const ShoppingCart = () => {
   return (
     <Sheet>
       <SheetTrigger>
-        <ShoppingBagIcon size={26} />
+        <ShoppingBagIcon size={30} />
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>

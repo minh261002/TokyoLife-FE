@@ -1,49 +1,80 @@
-import { Button } from "@/components/ui/button";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { CircleUserIcon } from "lucide-react";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  HeartIcon,
+  LogInIcon,
+  LogOutIcon,
+  ShoppingBagIcon,
+  SquareArrowUpIcon,
+  UserCircleIcon,
+} from "lucide-react";
+import { RootState } from "@/redux/store";
+import { useSelector } from "react-redux";
 
 const UserInfo = () => {
+  const { isAuthenticated, user } = useSelector(
+    (state: RootState) => state.auth
+  );
+
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <CircleUserIcon size={26} className="cursor-pointer" />
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input id="name" value="Pedro Duarte" className="col-span-3" />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Username
-            </Label>
-            <Input id="username" value="@peduarte" className="col-span-3" />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit">Save changes</Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+    <DropdownMenu>
+      <DropdownMenuTrigger>
+        {isAuthenticated ? (
+          <>
+            <Avatar>
+              <AvatarImage src={user?.image} />
+              <AvatarFallback>{user?.name}</AvatarFallback>
+            </Avatar>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>Tài khoản</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <UserCircleIcon size={20} />
+                Thông tin cá nhân
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <ShoppingBagIcon size={20} />
+                Đơn hàng
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <HeartIcon size={20} />
+                Sản phẩm yêu thích
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <LogOutIcon size={20} />
+                Đăng xuất
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </>
+        ) : (
+          <>
+            <Avatar>
+              <AvatarFallback>
+                <UserCircleIcon size={30} />
+              </AvatarFallback>
+            </Avatar>
+            <DropdownMenuContent>
+              <DropdownMenuItem>
+                <LogInIcon size={20} />
+                Đăng nhập
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <SquareArrowUpIcon size={20} />
+                Đăng ký
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </>
+        )}
+      </DropdownMenuTrigger>
+    </DropdownMenu>
   );
 };
 

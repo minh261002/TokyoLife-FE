@@ -19,13 +19,13 @@ const HeaderMain = () => {
               className="border-[#c92127] focus:border-none h-[40px] bg-white focus:ring-0 rounded-[4px]"
             />
             <Button className="absolute right-0 top-0 h-full bg-[#c92127]">
-              <SearchIcon size={24} />
+              <SearchIcon size={30} />
             </Button>
           </div>
           <div className="col-span-3 col-start-10">
             <div className="w-full flex items-center justify-end gap-6">
               <Link to={"/"}>
-                <PackageSearchIcon size={26} />
+                <PackageSearchIcon size={30} />
               </Link>
               <ShoppingCart />
               <UserInfo />
