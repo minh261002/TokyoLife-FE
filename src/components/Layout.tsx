@@ -20,7 +20,7 @@ const Layout = () => {
   }, [message, type]);
 
   return (
-    <>
+    <div>
       <div className="">
         <HeaderTop />
         <HeaderMain />
@@ -30,7 +30,7 @@ const Layout = () => {
       <div>
         <Outlet />
       </div>
-    </>
+    </div>
   );
 };
 

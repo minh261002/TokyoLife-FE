@@ -1,5 +1,5 @@
 import Swiper from "swiper";
-import { Navigation } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { useEffect } from "react";
@@ -8,10 +8,13 @@ import { Link } from "react-router-dom";
 const HeaderTop = () => {
   useEffect(() => {
     const swiper = new Swiper(".swiper", {
-      modules: [Navigation],
+      modules: [Navigation, Autoplay],
       navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
+      },
+      autoplay: {
+        delay: 3000,
       },
       loop: true,
       slidesPerView: 1,
@@ -34,7 +37,7 @@ const HeaderTop = () => {
   }, []);
   return (
     <div className="header-bg w-full h-[40px] flex items-center justify-center">
-      <div className="container">
+      <div className="w-full max-w-[1280px]">
         <div className="swiper">
           <div className="swiper-wrapper text-center">
             <div className="swiper-slide">
