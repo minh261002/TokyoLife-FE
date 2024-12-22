@@ -8,3 +8,10 @@ export type Category = {
     position: number;
     children: Category[];
 }
+
+export type HomeCategory = {
+    id: number;
+    name: string;
+    slug: string;
+    image : string;
+}

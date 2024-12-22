@@ -47,7 +47,7 @@ const UserInfo = () => {
       <DropdownMenuTrigger>
         <AuthMiddleware>
           <Avatar>
-            <AvatarImage src={"http://localhost:8000" + user?.image} />
+            <AvatarImage src={user?.image} />
             <AvatarFallback>{user?.name}</AvatarFallback>
           </Avatar>
           <DropdownMenuContent>

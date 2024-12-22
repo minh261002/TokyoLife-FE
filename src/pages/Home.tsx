@@ -1,4 +1,5 @@
 import DiscountSection from "@/components/home/DiscountSection";
+import HomeCategory from "@/components/home/HomeCategory";
 import SwiperSlider from "@/components/home/SwiperSlider";
 
 const Home = () => {
@@ -6,6 +7,9 @@ const Home = () => {
     <>
       <div className="mt-10">
         <SwiperSlider />
+      </div>
+      <div className="mt-10">
+        <HomeCategory />
       </div>
       <div className="mt-10">
         <DiscountSection />
